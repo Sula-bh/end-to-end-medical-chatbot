@@ -1,15 +1,15 @@
+import logging
 import os
 from pathlib import Path
-import logging
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s]: %(message)s:")
 
 
 list_of_files = [
-    "src/__init__.py",
-    "src/helper.py",
-    "src/prompt.py",
-    "src/logger.py",
+    "src/med_chatbot/__init__.py",
+    "src/med_chatbot/helper.py",
+    "src/med_chatbot/prompt.py",
+    "src/med_chatbot/logger.py",
     ".env",
     "setup.py",
     "notebooks/experiment.ipynb",
