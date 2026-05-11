@@ -45,7 +45,7 @@
             </div>
             <div id="messageFormeight" class="card-body msg_card_body"></div>
             <div class="card-footer">
-              <form id="messageArea" class="input-group">
+              <form id="messageArea" class="input-group" novalidate>
                 <input
                   type="text"
                   id="text"
@@ -93,6 +93,10 @@
           const minute = date.getMinutes();
           const str_time = hour + ":" + minute;
           var rawText = escapeHtml($("#text").val());
+
+          if (!rawText.trim()) {
+            return;
+          }
 
           var userHtml =
             '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' +
