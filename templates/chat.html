@@ -97,6 +97,21 @@
 
           scrollToBottom();
 
+          const botMessageId = "bot-response-" + Date.now();
+
+          let botHtml =
+            '<div class="d-flex justify-content-start mb-4">' +
+            '<div class="img_cont_msg">' +
+            '<img src="/static/images/logo.png" class="rounded-circle user_img_msg">' +
+            "</div>" +
+            '<div class="msg_cotainer" id="' +
+            botMessageId +
+            '"><div class="typing-indicator"><span></span><span></span><span></span></div></div></div>';
+
+          $("#messageFormeight").append(botHtml);
+
+          scrollToBottom();
+
           fetch("/get", {
             method: "POST",
             headers: {
@@ -107,27 +122,25 @@
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
 
-            const botMessageId = "bot-response-" + Date.now();
-
-            let botHtml =
-              '<div class="d-flex justify-content-start mb-4">' +
-              '<div class="img_cont_msg">' +
-              '<img src="/static/images/logo.png" class="rounded-circle user_img_msg">' +
-              "</div>" +
-              '<div class="msg_cotainer" id="' +
-              botMessageId +
-              '"></div></div>';
-
-            $("#messageFormeight").append(botHtml);
-
             let fullResponse = "";
+            let firstChunk = true;
 
             while (true) {
               const { done, value } = await reader.read();
+
               if (done) break;
+
               const chunk = decoder.decode(value);
+
+              if (firstChunk) {
+                $("#" + botMessageId).html("");
+                firstChunk = false;
+              }
+
               fullResponse += chunk;
+
               $("#" + botMessageId).html(fullResponse);
+
               scrollToBottom();
             }
           });
