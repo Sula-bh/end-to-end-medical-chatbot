@@ -72,6 +72,15 @@
     </div>
 
     <script>
+      function escapeHtml(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
       function scrollToBottom() {
         const messageBody = document.getElementById("messageFormeight");
         messageBody.scrollTop = messageBody.scrollHeight;
@@ -83,7 +92,7 @@
           const hour = date.getHours();
           const minute = date.getMinutes();
           const str_time = hour + ":" + minute;
-          var rawText = $("#text").val();
+          var rawText = escapeHtml($("#text").val());
 
           var userHtml =
             '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' +
@@ -139,7 +148,7 @@
 
               fullResponse += chunk;
 
-              $("#" + botMessageId).html(fullResponse);
+              $("#" + botMessageId).text(fullResponse);
 
               scrollToBottom();
             }
