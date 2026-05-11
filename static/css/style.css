@@ -267,3 +267,23 @@ html {
     opacity: 1;
   }
 }
+
+/* Chat scrollbar */
+.msg_card_body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.msg_card_body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.msg_card_body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.msg_card_body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
