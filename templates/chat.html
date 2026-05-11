@@ -72,6 +72,11 @@
     </div>
 
     <script>
+      function scrollToBottom() {
+        const messageBody = document.getElementById("messageFormeight");
+        messageBody.scrollTop = messageBody.scrollHeight;
+      }
+
       $(document).ready(function () {
         $("#messageArea").on("submit", function (event) {
           const date = new Date();
@@ -89,6 +94,8 @@
 
           $("#text").val("");
           $("#messageFormeight").append(userHtml);
+
+          scrollToBottom();
 
           fetch("/get", {
             method: "POST",
@@ -121,6 +128,7 @@
               const chunk = decoder.decode(value);
               fullResponse += chunk;
               $("#" + botMessageId).html(fullResponse);
+              scrollToBottom();
             }
           });
           event.preventDefault();
