@@ -19,7 +19,7 @@ def load_pdf(data):
 def split_text(data):
     logging.info("Splitting documents into chunks")
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=20)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=100)
     text_chunks = text_splitter.split_documents(data)
 
     logging.info(f"Created {len(text_chunks)} text chunks")
@@ -30,7 +30,7 @@ def split_text(data):
 def download_embedding_model():
     logging.info("Downloading embedding model")
 
-    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    model_name = "BAAI/bge-base-en-v1.5"
     model_kwargs = {"device": "cpu"}
 
     embeddings = HuggingFaceEmbeddings(model_name=model_name, model_kwargs=model_kwargs)
