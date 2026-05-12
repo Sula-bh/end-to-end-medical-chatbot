@@ -34,7 +34,7 @@ prompt = ChatPromptTemplate.from_template(prompt_template)
 
 logging.info("Initializing Ollama model")
 
-llm = ChatOllama(model="llama3.2:3b", temperature=0.8, num_predict=512, streaming=True)
+llm = ChatOllama(model="llama3.2:3b", temperature=0.3, num_predict=150, streaming=True)
 
 retriever = docsearch.as_retriever(search_kwargs={"k": 3})
 
